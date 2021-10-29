@@ -5,9 +5,9 @@
     <classes>
       <class name="appiumTest.QATechTest">
         <methods>
+          <include name="IncrementCounterInBetween"/>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="ValidateCounter"/>
         </methods>
       </class> <!-- appiumTest.QATechTest -->
     </classes>

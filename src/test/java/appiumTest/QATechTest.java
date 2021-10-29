@@ -31,8 +31,8 @@ public class QATechTest extends BaseTest{
 	}
 	
 	
-	@Test
-	public void ValidateCounter() throws IOException
+	@Test(priority = 1)
+	public void IncrementCounterFromZero() throws IOException
 	{
 		
 		WebElement counterButton =driver.findElement(By.xpath(prop.getProperty("counter_btn")));
@@ -53,6 +53,31 @@ public class QATechTest extends BaseTest{
 		int actualValueOfCounter = Integer.parseInt(Results.getText());	
 		int expectedValueOfCounter = numberFromConsole;
 		Assert.assertEquals(expectedValueOfCounter, actualValueOfCounter);
+        
+
+	}		
+	
+	@Test (priority = 2)
+	public void IncrementCounterInBetween() throws IOException
+	{
+		
+		WebElement counterButton =driver.findElement(By.xpath(prop.getProperty("counter_btn")));
+		
+		WebElement BeforeResults = driver.findElement(By.xpath(prop.getProperty("counterValue_txt")));
+		int BeforeCounterValue = Integer.parseInt(BeforeResults.getText());	
+		
+		System.out.println("Value of Counter is : "+BeforeCounterValue);		
+		int numbertoBeIncrement = 5;
+		System.out.println("The number of times counter to be increment in between: "+numbertoBeIncrement);
+					
+		for(int i=0;i<numbertoBeIncrement;i++) {
+			counterButton.click();			
+		}
+		
+		WebElement AfterResults = driver.findElement(By.xpath(prop.getProperty("counterValue_txt")));
+		int AfterCounterValue = Integer.parseInt(AfterResults.getText());	
+		int expectedValueOfCounter = AfterCounterValue - BeforeCounterValue;
+		Assert.assertEquals(expectedValueOfCounter, numbertoBeIncrement);
         
 
 	}		
